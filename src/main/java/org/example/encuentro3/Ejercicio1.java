@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Ejercicio1 {
     public static void main(String[] args) {
-        // Escribir un programa que lea la altura de N personas y calcule:
+/*        // Escribir un programa que lea la altura de N personas y calcule:
         // 1 - la altura media
 
 
@@ -58,6 +58,45 @@ public class Ejercicio1 {
         }
 
         System.out.println("La cantidad de personas con altura menor a la altura media es de: " + cantMenorMedia);
+
+    */
+        // Mismo ejercicio usando Array en lugar de ArrayList
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese la cantidad de valores que quiere cargar: ");
+        int cantidadValores = scanner.nextInt();
+        float[] alturas = new float[cantidadValores];
+
+        float alturaMedia = 0;
+        float acumuladorAltura = 0;
+        float alturaRedondeado = 0;
+        int cantidadAlturasMenoresMedia = 0;
+        int cantidadAlturasMayoresMedia = 0;
+
+        for(int i = 0; i < cantidadValores; i++) {
+            System.out.println("Ingrese la altura que desea registrar: ");
+            alturas[i] = scanner.nextFloat();
+            acumuladorAltura += alturas[i];
+        }
+
+        if(alturas.length != 0) {
+            alturaMedia = acumuladorAltura / alturas.length;
+            alturaRedondeado = Math.round(alturaMedia * 100) / 100f;
+            System.out.println("La altura media es de: " + alturaRedondeado);
+        } else {
+            System.out.println("No se puede calcular la altura media");
+        }
+
+        // Contamos la cantidad de alturas menores a la media
+        for(int i = 0; i < cantidadValores; i++) {
+            if(alturas[i] < alturaRedondeado) {
+                cantidadAlturasMenoresMedia += 1;
+            } else if (alturas[i] > alturaRedondeado) {
+                cantidadAlturasMayoresMedia += 1;
+            }
+        }
+
+        System.out.println("La cantidad de alturas menores a la media es de: " + cantidadAlturasMenoresMedia);
+        System.out.println("La cantidad de alturas mayores a la media es de: " + cantidadAlturasMayoresMedia);
 
     }
 }
